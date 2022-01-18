@@ -12,6 +12,8 @@ class Bengkel extends CI_Controller
         $this->load->model('bengkelmodel', 'bengkel');
 
         $this->user_id_login = $this->session->userdata('login_session')['user_id'];
+        $this->user_role_login = $this->session->userdata('login_session')['role'];
+        $this->bengkel_id_login = $this->session->userdata('login_session')['bengkel_id'];
     }
 
 
@@ -23,7 +25,7 @@ class Bengkel extends CI_Controller
             'sub_page'  => '',
             'bengkel'   => $this->bengkel->getAllBengkel(),
             'content'   => 'bengkel/index',
-            'sidebar'   => $this->menu->getMenuOrderByRole($this->user_id_login)
+            'sidebar'   => $this->menu->getMenuOrderByRole($this->user_role_login)
         ];
         $this->load->view('template/master', $data);
     }

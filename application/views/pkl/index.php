@@ -5,36 +5,33 @@
         </div>
     </div>
     <!-- /.card-header -->
-    <!-- <div class="card-body">
+    <div class="card-body">
         <table id="table_bengkel" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Bengkel</th>
-                    <th>Alamat</th>
+                    <th>Nama Siswa</th>
                     <th>No Telepon</th>
                     <th>Email</th>
-                    <th>Aksi</th>
+                    <th>Agenda</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $no = 1;
-                foreach ($bengkel as $row) : ?>
+                foreach ($table as $row) : ?>
                     <tr>
-                        <td><?= $no++; ?></td>
-                        <td><?= $row['nama_bengkel']  ?></td>
-                        <td><?= $row['alamat_bengkel'] ?></td>
-                        <td><?= $row['nohp'] ?></td>
-                        <td><?= $row['email'] ?></td>
+                        <td><?= $no++ ?></td>
+                        <td><?= $row['nama_siswa'] ?></td>
+                        <td><?= $row['nohp_siswa'] ?></td>
+                        <td><?= $row['email_siswa'] ?></td>
                         <td>
-                            <a href="#" class="badge bg-success">Ubah</a>
-                            <a href="#" class="badge bg-danger">Hapus</a>
+                            <a href="#" class="btn btn-primary">+ Agenda</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div> -->
+    </div>
     <!-- /.card-body -->
 </div>
 <!-- /.card -->

@@ -11,20 +11,22 @@ class Agenda extends CI_Controller
         $this->load->model('bengkelmodel', 'bengkel');
         $this->load->model('siswamodel', 'siswa');
         $this->load->model('agendamodel', 'agenda');
+        $this->load->model('pklmodel', 'pkl');
 
         $this->user_id_login = $this->session->userdata('login_session')['user_id'];
+        $this->user_role_login = $this->session->userdata('login_session')['role'];
+        $this->bengkel_id_login = $this->session->userdata('login_session')['bengkel_id'];
     }
 
     public function index()
     {
-        $bengkel = $this->bengkel->getBengkelByUserId($this->user_id_login);
-        $agenda = $this->agenda->getAllAgendaByBengkelId($bengkel['bengkel_id']);
+        $agenda = $this->agenda->getAllAgendaByBengkelId($this->bengkel_id_login);
         $data = [
             'page'      => 'Agenda',
             'sub_page'  => '',
             'agenda'    => $agenda,
             'content'   => 'agenda/index',
-            'sidebar'   => $this->menu->getMenuOrderByRole($this->user_id_login)
+            'sidebar'   => $this->menu->getMenuOrderByRole($this->user_role_login)
         ];
         $this->load->view('template/master', $data);
     }
@@ -49,11 +51,11 @@ class Agenda extends CI_Controller
             $data = [
                 'page'          => 'Agenda',
                 'sub_page'      => 'Tambah',
-                'siswa'         => $this->siswa->getAllSiswa(),
+                'siswa'         => $this->pkl->getAllPklByBengkelId($this->bengkel_id_login),
                 'type'          => 'add',
                 'edit_agenda'   => false,
                 'content'       => 'agenda/form',
-                'sidebar'       => $this->menu->getMenuOrderByRole($this->user_id_login)
+                'sidebar'       => $this->menu->getMenuOrderByRole($this->user_role_login)
             ];
             $this->load->view('template/master', $data);
         } else {
@@ -114,7 +116,7 @@ class Agenda extends CI_Controller
                 'edit_agenda'   => $agenda,
                 'content'       => 'agenda/form',
                 'type'          => 'edit',
-                'sidebar'       => $this->menu->getMenuOrderByRole($this->user_id_login)
+                'sidebar'       => $this->menu->getMenuOrderByRole($this->user_role_login)
             ];
             $this->load->view('template/master', $data);
         } else {
