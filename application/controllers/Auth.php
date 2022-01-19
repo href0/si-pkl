@@ -34,6 +34,7 @@ class Auth extends CI_Controller
                         $dataSession = [
                             'role'          => $user['user_role'],
                             'user_id'       => $user['user_id'],
+                            'username'      => $user['username'],
                             'bengkel_id'    => ''
                         ];
                         $this->session->set_userdata('login_session', $dataSession);
@@ -43,6 +44,7 @@ class Auth extends CI_Controller
                         $dataSession = [
                             'role'          => $user['user_role'],
                             'user_id'       => $user['user_id'],
+                            'username'      => $user['username'],
                             'bengkel_id'    => $bengkel['bengkel_id']
                         ];
                         $this->session->set_userdata('login_session', $dataSession);
@@ -63,5 +65,13 @@ class Auth extends CI_Controller
                 redirect('auth');
             }
         }
+    }
+
+    public function logout()
+    {
+        // logout
+        // membersihkan session dan mengembalikan kehalaman login
+        $this->session->unset_userdata('login_session');
+        redirect('auth');
     }
 }

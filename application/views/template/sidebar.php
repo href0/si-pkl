@@ -14,7 +14,7 @@
                 <img src="<?= base_url('assets') ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block"><?= $username ?></a>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
                     </li>
                 <?php endforeach; ?>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?= base_url('auth/logout') ?>" class="nav-link">
                         <i class="nav-icon far fas fa-sign-out-alt "></i>
                         <p>
                             Logout

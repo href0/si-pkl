@@ -29,4 +29,11 @@ class AgendaModel extends CI_Model
             ->get('agenda')
             ->row_array();
     }
+
+    public function getAgendaById($agenda_id)
+    {
+        return $this->db
+            ->get_where('agenda', ['agenda_id'  => $agenda_id])
+            ->row_array();
+    }
 }

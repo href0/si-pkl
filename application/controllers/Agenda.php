@@ -15,7 +15,11 @@ class Agenda extends CI_Controller
 
         $this->user_id_login = $this->session->userdata('login_session')['user_id'];
         $this->user_role_login = $this->session->userdata('login_session')['role'];
+        $this->username_login = $this->session->userdata('login_session')['username'];
         $this->bengkel_id_login = $this->session->userdata('login_session')['bengkel_id'];
+
+
+        is_logged_in($this->user_role_login);
     }
 
     public function index()
@@ -30,6 +34,7 @@ class Agenda extends CI_Controller
         $data = [
             'page'      => 'Agenda',
             'sub_page'  => '',
+            'username'  => $this->username_login,
             'role'      => $this->user_role_login,
             'agenda'    => $agenda,
             'content'   => 'agenda/index',
@@ -58,6 +63,7 @@ class Agenda extends CI_Controller
             $data = [
                 'page'          => 'Agenda',
                 'sub_page'      => 'Tambah',
+                'username'  => $this->username_login,
                 'siswa'         => $this->pkl->getAllPklByBengkelId($this->bengkel_id_login),
                 'type'          => 'add',
                 'edit_agenda'   => false,
@@ -96,12 +102,19 @@ class Agenda extends CI_Controller
 
     public function edit($agenda_id = null)
     {
+
         if (!$agenda_id) {
             redirect('agenda');
         }
-        $bengkel = $this->bengkel->getBengkelByUserId($this->user_id_login);
-        $agenda = $this->agenda->getAgendaByIdAndBengkelId($agenda_id, $bengkel['bengkel_id']);
-        if (!$agenda) {
+        $bengkel_id = '';
+        // jika admin yang login
+        if ($this->user_role_login != '3') {
+            $bengkel_id = $this->agenda->getAgendaById($agenda_id);
+        } else { // jika user biasa
+            $bengkel_id = $this->bengkel->getBengkelByUserId($this->user_id_login);
+        }
+        $agenda = $this->agenda->getAgendaByIdAndBengkelId($agenda_id, $bengkel_id['bengkel_id']);
+        if (!$agenda && $this->user_role_login == '3') {
             redirect('agenda');
         }
 
