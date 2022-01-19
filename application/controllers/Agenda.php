@@ -20,10 +20,17 @@ class Agenda extends CI_Controller
 
     public function index()
     {
-        $agenda = $this->agenda->getAllAgendaByBengkelId($this->bengkel_id_login);
+        $agenda = '';
+        if ($this->user_role_login == '1' || $this->user_role_login == '2') {
+            $agenda = $this->agenda->getAllAgenda();
+        } else {
+            $agenda = $this->agenda->getAllAgendaByBengkelId($this->bengkel_id_login);
+        }
+
         $data = [
             'page'      => 'Agenda',
             'sub_page'  => '',
+            'role'      => $this->user_role_login,
             'agenda'    => $agenda,
             'content'   => 'agenda/index',
             'sidebar'   => $this->menu->getMenuOrderByRole($this->user_role_login)
