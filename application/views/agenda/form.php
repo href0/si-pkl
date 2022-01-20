@@ -59,20 +59,3 @@
 
 </div>
 <!-- /.card-body -->
-<script>
-    $(document).ready(function() {
-        $(function() {
-            let currentDate = new Date();
-            $("#datepicker").datepicker({
-                dateFormat: 'yy-mm-dd',
-                minDate: -7,
-                maxDate: currentDate
-            });
-            $('#datepicker').keyup(function() {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
-            });
-        });
-    });
-</script>

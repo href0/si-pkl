@@ -18,22 +18,3 @@
 
 </div>
 <!-- /.card-body -->
-
-<script>
-    $(document).ready(function() {
-        $(function() {
-            let currentDate = new Date();
-            console.log(currentDate)
-            $("#tanggal_masuk").datepicker({
-                dateFormat: 'yy-mm-dd',
-                minDate: "2022-01-15",
-                maxDate: "2022-03-15",
-            });
-            $('#tanggal_masuk').keyup(function() {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
-            });
-        });
-    });
-</script>

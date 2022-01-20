@@ -26,6 +26,7 @@
   <!-- AdminLTE for demo purposes -->
   <!-- jQuery -->
   <!-- jQuery -->
+
   <script src="<?= base_url('assets') ?>/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?= base_url('assets') ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -47,6 +48,11 @@
   <!-- AdminLTE for demo purposes -->
   <script src="<?= base_url('assets') ?>/dist/js/demo.js"></script>
 
+  <!-- DATEPICKER -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+
   <script>
       $(document).ready(function() {
           $(function() {
@@ -64,6 +70,35 @@
                   "info": true,
                   "autoWidth": false,
                   "responsive": true,
+              });
+          });
+
+          $(function() {
+              let currentDate = new Date();
+              $("#datepicker").datepicker({
+                  dateFormat: 'yy-mm-dd',
+                  minDate: -7,
+                  maxDate: currentDate
+              });
+              $('#datepicker').keyup(function() {
+                  if (this.value.match(/[^0-9]/g)) {
+                      this.value = this.value.replace(/[^0-9^-]/g, '');
+                  }
+              });
+          });
+
+          $(function() {
+              let currentDate = new Date();
+              //   console.log(currentDate)
+              $("#tanggal_masuk").datepicker({
+                  dateFormat: 'yy-mm-dd',
+                  minDate: "2022-01-15",
+                  maxDate: "2022-03-15",
+              });
+              $('#tanggal_masuk').keyup(function() {
+                  if (this.value.match(/[^0-9]/g)) {
+                      this.value = this.value.replace(/[^0-9^-]/g, '');
+                  }
               });
           });
       })
