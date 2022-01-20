@@ -5,7 +5,10 @@ class SiswaModel extends CI_Model
 {
     public function getAllSiswa()
     {
-        return $this->db->get('siswa')->result_array();
+        return $this->db
+            ->join('pembimbing', 'pembimbing.pembimbing_id = siswa.pembimbing_id')
+            ->get('siswa')
+            ->result_array();
     }
 
     public function getSiswaById($siswa_id)

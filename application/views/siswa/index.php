@@ -13,6 +13,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama Siswa</th>
+                    <th>Pembimbing</th>
                     <th>No Telepon</th>
                     <th>Email</th>
                     <th>Kelas</th>
@@ -25,6 +26,7 @@
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row['nama_siswa'] ?></td>
+                        <td><?= $row['nama_pembimbing'] ?></td>
                         <td><?= $row['nohp_siswa'] ?></td>
                         <td><?= $row['email_siswa'] ?></td>
                         <td><?= $row['kelas_siswa'] ?></td>
