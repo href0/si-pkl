@@ -132,6 +132,7 @@ class Agenda extends CI_Controller
             $data = [
                 'page'          => 'Agenda',
                 'sub_page'      => 'Edit',
+                'username'  => $this->username_login,
                 'siswa'         => $this->siswa->getAllSiswa(),
                 'edit_agenda'   => $agenda,
                 'content'       => 'agenda/form',
@@ -164,13 +165,19 @@ class Agenda extends CI_Controller
 
     public function delete($agenda_id = null)
     {
-        if (!$agenda_id) {
+        if (!$agenda_id && $this->user_role_login == '3') {
             redirect('err404');
         }
 
-        // check agenda yang akan dihapus sesuai dengan user yang login
-        $bengkel = $this->bengkel->getBengkelByUserId($this->user_id_login);
-        $agenda = $this->agenda->getAgendaByIdAndBengkelId($agenda_id, $bengkel['bengkel_id']);
+        $bengkel_id = '';
+        // jika admin yang login
+        if ($this->user_role_login != '3') {
+            $bengkel_id = $this->agenda->getAgendaById($agenda_id);
+        } else { // jika user biasa, check agenda yang akan dihapus sesuai dengan user yang login
+            $bengkel_id = $this->bengkel->getBengkelByUserId($this->user_id_login);
+        }
+
+        $agenda = $this->agenda->getAgendaByIdAndBengkelId($agenda_id, $bengkel_id['bengkel_id']);
         if (!$agenda) {
             redirect('err404');
         }
