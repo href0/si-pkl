@@ -1,7 +1,9 @@
 <div class="card">
     <div class="card-header">
+        <?= $this->session->flashdata('message') ?>
+        <?php unset($_SESSION['message']) ?>
         <div class="float-sm-right">
-            <a href="#" class="btn btn-primary">+ Tambah</a>
+            <a href="<?= base_url('bengkel/add') ?>" class="btn btn-primary">+ Tambah</a>
         </div>
     </div>
     <!-- /.card-header -->
@@ -27,8 +29,8 @@
                         <td><?= $row['nohp'] ?></td>
                         <td><?= $row['email'] ?></td>
                         <td>
-                            <a href="#" class="badge bg-success">Ubah</a>
-                            <a href="#" class="badge bg-danger">Hapus</a>
+                            <a href="<?= base_url('bengkel/edit/') . $row['bengkel_id'] ?>" class="badge bg-success">Ubah</a>
+                            <a onClick="return confirm('Yakin ingin menghapus bengkel ini ?')" href="<?= base_url('bengkel/delete/') . $row['bengkel_id'] ?>" class="badge bg-danger">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
