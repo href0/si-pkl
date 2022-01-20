@@ -1,13 +1,13 @@
 <div class="card-body">
 
     <?php
-    $pembimbing = '';
+    $nama_pembimbing = '';
     $nama_siswa = '';
     $kelas = '';
     $email = '';
     $nohp = '';
     if ($edit_siswa) {
-        $pembimbing = $edit_siswa['nama_pembimbing'];
+        $nama_pembimbing = $edit_siswa['nama_pembimbing'];
         $nama_siswa = $edit_siswa['nama_siswa'];
         $kelas = $edit_siswa['kelas_siswa'];
         $email  = $edit_siswa['email_siswa'];
@@ -28,7 +28,7 @@
                     <?php endforeach; ?>
                 </select>
             <?php else : ?>
-                <input class="form-control" disabled value="<?= $pembimbing ?>">
+                <input class="form-control" disabled value="<?= $nama_pembimbing ?>">
             <?php endif; ?>
             <div class="invalid-feedback"><?= form_error('pembimbing') ?></div>
         </div>
