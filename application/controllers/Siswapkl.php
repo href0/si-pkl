@@ -22,6 +22,7 @@ class Siswapkl extends CI_Controller
     public function index()
     {
         $data = [
+            'title'     => 'Siswa PKL',
             'page'      => 'Siswa PKL',
             'sub_page'  => '',
             'username'  => $this->username_login,
@@ -118,6 +119,7 @@ class Siswapkl extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = [
+                'title'     => 'Siswa PKL',
                 'page'          => 'Siswa PKL',
                 'sub_page'      => 'Edit',
                 'username'      => $this->username_login,

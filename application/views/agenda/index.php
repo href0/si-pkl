@@ -16,9 +16,7 @@
                     <th>Kegiatan</th>
                     <th>Nilai Budaya Industri</th>
                     <th>Tanggal Kegiatan</th>
-                    <?php if ($role == '1' || $role == '2') : ?>
-                        <th>Bengkel</th>
-                    <?php endif; ?>
+                    <th>Bengkel</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -31,9 +29,7 @@
                         <td><?= $row['kegiatan'] ?></td>
                         <td><?= $row['nilai_budaya_industri'] ?></td>
                         <td><?= $row['tanggal_kegiatan'] ?></td>
-                        <?php if ($role == '1' || $role == '2') : ?>
-                            <td><?= $row['nama_bengkel'] ?></td>
-                        <?php endif; ?>
+                        <td><?= $row['nama_bengkel'] ?></td>
                         <td>
                             <a href="<?= base_url('agenda/edit/') . $row['agenda_id'] ?>" class="badge bg-success">Ubah</a>
                             <a onClick="return confirm('Yakin ingin menghapus agenda ini ?')" href="<?= base_url('agenda/delete/') . $row['agenda_id'] ?>" class="badge bg-danger">Hapus</a>

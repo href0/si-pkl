@@ -24,6 +24,7 @@ class Bengkel extends CI_Controller
     {
 
         $data = [
+            'title'         => 'Bengkel',
             'page'          => 'Daftar Bengkel',
             'sub_page'      => '',
             'username'      => $this->username_login,
@@ -59,6 +60,7 @@ class Bengkel extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = [
+                'title'         => 'Bengkel',
                 'page'          => 'Daftar Bengkel',
                 'sub_page'      => 'Tambah',
                 'username'      => $this->username_login,
@@ -122,6 +124,7 @@ class Bengkel extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = [
+                'title'         => 'Bengkel',
                 'page'          => 'Daftar Bengkel',
                 'sub_page'      => 'Edit',
                 'username'      => $this->username_login,

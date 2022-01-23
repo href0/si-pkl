@@ -22,6 +22,7 @@ class Pkl extends CI_Controller
     {
 
         $data = [
+            'title'     => 'PKL',
             'page'      => 'PKL',
             'sub_page'  => '',
             'username'  => $this->username_login,
@@ -43,6 +44,7 @@ class Pkl extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = [
+                'title'     => 'PKL',
                 'page'      => 'PKL',
                 'username'  => $this->username_login,
                 'sub_page'  => 'Permintaan',

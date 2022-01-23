@@ -32,6 +32,7 @@ class Agenda extends CI_Controller
         }
 
         $data = [
+            'title'     => 'Agenda',
             'page'      => 'Agenda',
             'sub_page'  => '',
             'username'  => $this->username_login,
@@ -61,6 +62,7 @@ class Agenda extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = [
+                'title'     => 'Agenda',
                 'page'          => 'Agenda',
                 'sub_page'      => 'Tambah',
                 'username'  => $this->username_login,
@@ -130,6 +132,7 @@ class Agenda extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = [
+                'title'     => 'Agenda',
                 'page'          => 'Agenda',
                 'sub_page'      => 'Edit',
                 'username'  => $this->username_login,

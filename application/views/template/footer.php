@@ -20,6 +20,7 @@
       <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
+  <p id="columnDatatable" data-value="<?= $title ?>" hidden></p>
   </div>
   <!-- ./wrapper -->
 
@@ -54,24 +55,47 @@
 
 
   <script>
+      $(function() {
+          let column = $('#columnDatatable').data('value')
+          let columns = []
+          if (column == 'Bengkel' || column == 'PKL') {
+              columns = [0, 1, 2, 3, 4]
+          } else if (column == 'Siswa PKL' || column == 'Agenda') {
+              columns = [0, 1, 2, 3, 4, 5]
+          }
+          console.log(column)
+          $("#table").DataTable({
+              "responsive": true,
+              "lengthChange": false,
+              "autoWidth": false,
+              //   "buttons": ["excel", "pdf", "print"]
+              "buttons": [{
+                      extend: 'print',
+                      title: 'PKL Bengkel | ' + '<?= $title   ?>',
+                      exportOptions: {
+                          columns: columns
+                      }
+                  },
+                  {
+                      extend: 'pdf',
+                      title: '<?= $title   ?>',
+                      exportOptions: {
+                          columns: columns
+                      }
+                  },
+                  {
+                      extend: 'excel',
+                      title: '<?= $title   ?>',
+                      exportOptions: {
+                          columns: columns
+                      }
+                  },
+              ]
+          }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+
+      });
       $(document).ready(function() {
-          $(function() {
-              $("#table").DataTable({
-                  "responsive": true,
-                  "lengthChange": false,
-                  "autoWidth": false,
-                  // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-              }).buttons().container().appendTo('#table_bengkel_wrapper .col-md-6:eq(0)');
-              $('#example2').DataTable({
-                  "paging": true,
-                  "lengthChange": false,
-                  "searching": false,
-                  "ordering": true,
-                  "info": true,
-                  "autoWidth": false,
-                  "responsive": true,
-              });
-          });
+
 
           $(function() {
               let currentDate = new Date();

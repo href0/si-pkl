@@ -15,6 +15,7 @@ class AgendaModel extends CI_Model
     {
         return $this->db
             ->join('siswa', 'siswa.siswa_id = agenda.siswa_id')
+            ->join('bengkel', 'bengkel.bengkel_id = agenda.bengkel_id')
             ->where('agenda.bengkel_id', $bengkel_id)
             ->get('agenda')
             ->result_array();
