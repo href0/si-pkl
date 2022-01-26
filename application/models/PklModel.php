@@ -17,4 +17,9 @@ class PklModel extends CI_Model
             ->get('pkl')
             ->result_array();
     }
+
+    public function getBySiswaId($siswa_id)
+    {
+        return $this->db->get_where('pkl', ['id_siswa'  => $siswa_id])->row_array();
+    }
 }

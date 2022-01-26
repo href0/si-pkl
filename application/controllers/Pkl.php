@@ -74,4 +74,42 @@ class Pkl extends CI_Controller
             }
         }
     }
+
+    public function penilaian($siswa_id)
+    {
+        $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required', [
+            'required'      => 'Nilai tidak boleh kosong'
+        ]);
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = [
+                'title'     => 'PKL',
+                'page'      => 'PKL',
+                'sub_page'  => '',
+                'siswa_id'  => $siswa_id,
+                'username'  => $this->username_login,
+                'table'     => $this->pkl->getAllPklByBengkelId($this->bengkel_id_login),
+                'content'   => 'pkl/nilai.php',
+                'sidebar'   => $this->menu->getMenuOrderByRole($this->user_role_login)
+            ];
+            $this->load->view('template/master', $data);
+        } else {
+            $check = $this->pkl->getBySiswaId($siswa_id);
+            if ($check != '') {
+                $update = $this->db
+                    ->set('nilai', $this->input->post('nilai'))
+                    ->where('id_siswa', $siswa_id)
+                    ->update('pkl');
+
+                if ($update > 0) {
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert">Nilai berhasil diinput</div>'
+                    );
+                    redirect('pkl');
+                }
+            }
+        }
+    }
 }
